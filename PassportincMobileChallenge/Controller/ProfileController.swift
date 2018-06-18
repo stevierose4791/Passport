@@ -380,7 +380,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         for uuser in ageSorted{
            
             if uuser.name == profile.name || uuser.id == profile.id{
-               
+               uuser.name.capitalized
                 let pro = Profile(name: uuser.name, gender: uuser.gender, age: uuser.age, id: uuser.id, firstHobby: uuser.firstHobby, secondHobby: uuser.secondHobby, key:uuser.key, imageUrl: uuser.imageUrl)
                 aprofile.append(pro)
                 
@@ -416,6 +416,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                     self.profileTableView.reloadData()
                 }
             } else {
+                
                 let pro = Profile(name: uuser.name, gender: uuser.gender, age: uuser.age, id: uuser.id, firstHobby: uuser.firstHobby, secondHobby: uuser.secondHobby, key:uuser.key, imageUrl: uuser.imageUrl)
                 aprofile.append(pro)
                 
@@ -489,7 +490,8 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         if let name = nameTF.text, let age = ageTF.text, let gender = genderChosen, let firstHobby = firstHobbyChosen, let secondHobby = secondHobbyChosen {
             let counter = incrementID()
-            DB.shared.addNewUserProfile(name: name, age: age, gender: gender, firstHobby: firstHobby, secondHobby: secondHobby, id:counter)
+            let capName = name.capitalizingFirstLetter()
+            DB.shared.addNewUserProfile(name: capName, age: age, gender: gender, firstHobby: firstHobby, secondHobby: secondHobby, id:counter)
             
             let pc = ProfileController()
             let controllerNav = UINavigationController(rootViewController: pc)
@@ -511,6 +513,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     @objc func addButtonTapped(){
         overlayView.isHidden = false
         profileTableView.isHidden = true
+        filterPickerView.isHidden = true
         hideKeyboardWhenTappedAround()
 
         
@@ -532,6 +535,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         overlayView.isHidden = true
         profileTableView.isHidden = false
+        filterPickerView.isHidden = false
     }
     //gender selection made
     @objc func genderButtonTapped(sender:UIButton){
