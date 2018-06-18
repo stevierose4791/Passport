@@ -101,7 +101,7 @@ class DB:NSObject{
         //create storage reference
         let storage = Storage.storage()
         let storageRef = storage.reference().child("image/profile.jpg")
-        //let profileRef = storageRef.child("images/newprofile.jpg")
+        
         let profileImage = storageRef.child("\(imgName).jpg")
         
         profileImage.putData(uploadData, metadata: nil) { (metadata, error) in

@@ -53,7 +53,8 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         switch status {
         case .unreachable:
             AlertHandler.shared.networkConnectionFailed(vc:self)
-            view.backgroundColor = .red
+            return
+            //view.backgroundColor = .red
         case .wifi:
             print("wifi exist")
             //view.backgroundColor = .green
@@ -470,6 +471,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             self.userImg = image
             self.userImgButton.setImage(self.userImg, for: .normal)
             
+            
             DB.shared.uploadImg(img: self.userImg)
             
         }
@@ -478,7 +480,13 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     @objc func submitButtonTapped(){
     
        // profileTableView.isHidden = false
-
+        
+        if self.userImg == nil{
+            //alert no image added
+            AlertHandler.shared.userDataMissingAlert(vc: self)
+            clearNameAndAgeTextfield()
+            return
+        }
         if let name = nameTF.text, let age = ageTF.text, let gender = genderChosen, let firstHobby = firstHobbyChosen, let secondHobby = secondHobbyChosen {
             let counter = incrementID()
             DB.shared.addNewUserProfile(name: name, age: age, gender: gender, firstHobby: firstHobby, secondHobby: secondHobby, id:counter)
@@ -494,6 +502,10 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             return
         }
+    }
+    func clearNameAndAgeTextfield(){
+        self.nameTF.text = ""
+        self.ageTF.text = ""
     }
 //Show new profile overlay
     @objc func addButtonTapped(){

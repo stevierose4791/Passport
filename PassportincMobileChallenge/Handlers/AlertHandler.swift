@@ -14,7 +14,7 @@ class AlertHandler:NSObject {
 
     
     func userDataMissingAlert(vc:UIViewController){
-        let alertController = UIAlertController(title: "Please Check", message: "name/age/gender", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Please Check", message: "name/age/gender/image", preferredStyle: .actionSheet)
         let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
             let pc = ProfileController()
             let controllerNav = UINavigationController(rootViewController: pc)
