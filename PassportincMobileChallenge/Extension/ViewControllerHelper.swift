@@ -8,9 +8,19 @@
 
 import UIKit
 
+ let imageCache = NSCache<AnyObject, AnyObject>()
+var imageURLString:String?
 extension UIImageView{
+    
     func loadImageUsingWithUrlString(urlString:String){
+       imageURLString = urlString
         guard let imageURL = URL(string: urlString) else {return}
+        self.image = nil
+        if let imageFromCache = imageCache.object(forKey: imageURL as AnyObject) as? UIImage{
+            
+            self.image = imageFromCache
+            return
+        }
         URLSession.shared.dataTask(with:imageURL ) { (data, response, error) in
             if error != nil{
                 if let err = error{
@@ -19,9 +29,14 @@ extension UIImageView{
                 }
                 
             }
+           
             guard let imageData = data else{return}
+            
             DispatchQueue.main.async {
-               self.image = UIImage(data: imageData)
+                if let imageToCache = UIImage(data: imageData){
+                     self.image = imageToCache
+                }
+              
             }
             }.resume()
     }
