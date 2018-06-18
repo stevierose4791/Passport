@@ -8,28 +8,39 @@
 
 import UIKit
 
-class DetailController_PickerView: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+extension DetailViewController{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        if pickerView == firstHobbyPickerView{
+            return hobbies.count
+        } else if pickerView == secondHobbyPickerView{
+            return hobbies.count
+        }
+        return 0
+        
     }
-    */
-
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == firstHobbyPickerView{
+            return hobbies[row]
+        } else if pickerView == secondHobbyPickerView{
+            return hobbies[row]
+        }
+        return ""
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if pickerView == firstHobbyPickerView{
+            firstHobbyChosen = hobbies[row]
+        } else {
+            secondHobbyChosen = hobbies[row]
+        }
+        
+    }
+    
 }

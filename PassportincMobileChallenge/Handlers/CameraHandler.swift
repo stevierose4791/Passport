@@ -1,8 +1,5 @@
 //
 //  CameraHandler.swift
-//  RentAGrandma
-//
-//  Created by Steven Roseman on 4/26/18.
 //  Copyright © 2018 Steven Roseman. All rights reserved.
 //
 

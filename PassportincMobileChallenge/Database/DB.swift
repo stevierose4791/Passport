@@ -11,19 +11,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
-extension UIImage {
-    enum JPEGQuality: CGFloat {
-        case lowest  = 0
-        case low     = 0.25
-        case medium  = 0.5
-        case high    = 0.75
-        case highest = 1
-    }
 
-    func jpeg(_ quality: JPEGQuality) -> Data? {
-        return UIImageJPEGRepresentation(self, quality.rawValue)
-    }
-}
 
 class DB:NSObject{
     
@@ -136,19 +124,7 @@ class DB:NSObject{
             
         }
 
-//        let uploadTask = profileImage.putData(imageData, metadata: nil) { (metadata, error) in
-//
-//            storageRef.downloadURL { (url, error) in
-//                print(url?.absoluteString)
-//                guard let url = url else {
-//                    return
-//                }
-//
-//                print(url.absoluteString)
-//            }
-//        }
-//
-//        uploadTask.resume()
+
 
     }
     

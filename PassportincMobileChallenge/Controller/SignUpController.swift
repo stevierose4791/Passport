@@ -7,29 +7,43 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import GoogleSignIn
 
-class SignUpController: UIViewController {
+class SignUpController: UIViewController, GIDSignInUIDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        addSubViews()
+        setupLayout()
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    func addSubViews(){
+        view.addSubview(googleButton)
+    }
+
+    func setupLayout(){
+    
+        NSLayoutConstraint.activate([
+        googleButton.safeAreaLayoutGuide.centerXAnchor.constraint(equalTo:view.safeAreaLayoutGuide.centerXAnchor),
+        googleButton.safeAreaLayoutGuide.centerYAnchor.constraint(equalTo:view.safeAreaLayoutGuide.centerYAnchor),
+        
+            googleButton.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            googleButton.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+        
+        ])
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    let googleButton:GIDSignInButton = {
+        let button = GIDSignInButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 }
