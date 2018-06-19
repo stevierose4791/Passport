@@ -266,7 +266,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             let key = dict["key"] as! String
             self.id = dict["id"] as! Int
 
-            //
+            print(imageURL)
             self.downLoadUserProfile(name: name, age: age, gender: gender, firstHobby: firstHobby, secondHobby: secondHobby,url: imageURL,key:key)
             
         }
@@ -329,7 +329,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
          aprofile = []
         for uuser in ageSorted{
            
-            if uuser.age == profile.age || uuser.id == profile.id{
+            if uuser.age == profile.age {
   
                 let pro = Profile(name: uuser.name, gender: uuser.gender, age: uuser.age, id: uuser.id, firstHobby: uuser.firstHobby, secondHobby: uuser.secondHobby, key:uuser.key, imageUrl: uuser.imageUrl)
                 aprofile.append(pro)
@@ -359,7 +359,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         aprofile = []
         for uuser in ageSorted{
             
-            if uuser.age == profile.age || uuser.id == profile.id{
+            if uuser.age == profile.age {
                
                 let pro = Profile(name: uuser.name, gender: uuser.gender, age: uuser.age, id: uuser.id, firstHobby: uuser.firstHobby, secondHobby: uuser.secondHobby, key:uuser.key, imageUrl: uuser.imageUrl)
                 aprofile.append(pro)
@@ -387,7 +387,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         aprofile = []
         for uuser in ageSorted{
            
-            if uuser.name == profile.name || uuser.id == profile.id{
+            if uuser.name == profile.name {
                
                 let pro = Profile(name: uuser.name, gender: uuser.gender, age: uuser.age, id: uuser.id, firstHobby: uuser.firstHobby, secondHobby: uuser.secondHobby, key:uuser.key, imageUrl: uuser.imageUrl)
                 aprofile.append(pro)
@@ -455,7 +455,6 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             } else {
                 let pro = Profile(name: uuser.name, gender: uuser.gender, age: uuser.age, id: uuser.id, firstHobby: uuser.firstHobby, secondHobby: uuser.secondHobby, key:uuser.key, imageUrl: uuser.imageUrl)
                 aprofile.append(pro)
-                
                 DispatchQueue.main.async {
                     self.profileTableView.reloadData()
                 }

@@ -12,7 +12,6 @@
 		6533CF3620CEF9AA00DA6509 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6533CF3420CEF9AA00DA6509 /* Main.storyboard */; };
 		6533CF3820CEF9B600DA6509 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6533CF3720CEF9B600DA6509 /* Assets.xcassets */; };
 		6533CF3B20CEF9B600DA6509 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6533CF3920CEF9B600DA6509 /* LaunchScreen.storyboard */; };
-		6533CF4320CEFDC100DA6509 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6533CF4220CEFDC100DA6509 /* GoogleService-Info.plist */; };
 		6533CF4620CF013400DA6509 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6533CF4520CF013400DA6509 /* Profile.swift */; };
 		6533CF4920CF0DBC00DA6509 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6533CF4820CF0DBC00DA6509 /* ProfileCell.swift */; };
 		6533CF4C20CF12CE00DA6509 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6533CF4B20CF12CE00DA6509 /* ProfileController.swift */; };
@@ -24,6 +23,7 @@
 		656C7E6020D760EF004F5323 /* ViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656C7E5F20D760EF004F5323 /* ViewControllerHelper.swift */; };
 		656C7E6220D7688B004F5323 /* DetailController+PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656C7E6120D7688B004F5323 /* DetailController+PickerView.swift */; };
 		656C7E6420D7701F004F5323 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656C7E6320D7701F004F5323 /* Reachability.swift */; };
+		656C7E6820D9B438004F5323 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656C7E6720D9B438004F5323 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,6 @@
 		6533CF3720CEF9B600DA6509 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6533CF3A20CEF9B600DA6509 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6533CF3C20CEF9B600DA6509 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6533CF4220CEFDC100DA6509 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6533CF4520CF013400DA6509 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		6533CF4820CF0DBC00DA6509 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		6533CF4B20CF12CE00DA6509 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		656C7E5F20D760EF004F5323 /* ViewControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHelper.swift; sourceTree = "<group>"; };
 		656C7E6120D7688B004F5323 /* DetailController+PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailController+PickerView.swift"; sourceTree = "<group>"; };
 		656C7E6320D7701F004F5323 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		656C7E6720D9B438004F5323 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8FCFF654762BE7C1B3F367F /* Pods_PassportincMobileChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PassportincMobileChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDD2D42F2BB877229DACE82F /* Pods-PassportincMobileChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PassportincMobileChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-PassportincMobileChallenge/Pods-PassportincMobileChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,10 +99,10 @@
 				6533CF4420CF011800DA6509 /* Model */,
 				6533CF3020CEF9AA00DA6509 /* AppDelegate.swift */,
 				6533CF3420CEF9AA00DA6509 /* Main.storyboard */,
-				6533CF4220CEFDC100DA6509 /* GoogleService-Info.plist */,
 				6533CF3720CEF9B600DA6509 /* Assets.xcassets */,
 				6533CF3920CEF9B600DA6509 /* LaunchScreen.storyboard */,
 				6533CF3C20CEF9B600DA6509 /* Info.plist */,
+				656C7E6720D9B438004F5323 /* GoogleService-Info.plist */,
 				656C7E6320D7701F004F5323 /* Reachability.swift */,
 			);
 			path = PassportincMobileChallenge;
@@ -231,8 +231,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6533CF3B20CEF9B600DA6509 /* LaunchScreen.storyboard in Resources */,
+				656C7E6820D9B438004F5323 /* GoogleService-Info.plist in Resources */,
 				6533CF3820CEF9B600DA6509 /* Assets.xcassets in Resources */,
-				6533CF4320CEFDC100DA6509 /* GoogleService-Info.plist in Resources */,
 				6533CF3620CEF9AA00DA6509 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
