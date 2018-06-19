@@ -31,7 +31,10 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
+        //check network status
+        statusManagerNotificationCenter()
+        
+        //confirm connection status
         updateUserInterface()
         
         //load all saved profiles
@@ -40,12 +43,16 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         loadProfiles(withOptionChosen: pickerViewOptionChose)
 
         //hobby array initialized
-        //sort options array initialized
+        //sort options (age and name) array initialized
         loadPickerViewData()
         
         addSubViews()
         setupLayout()
-        navigationBarItems()
+        navigationBarButtonItems()
+    }
+    
+    func statusManagerNotificationCenter(){
+        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
     }
     
     func updateUserInterface() {
@@ -108,7 +115,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         tf.borderStyle = .roundedRect
         tf.layer.cornerRadius = 5
         tf.placeholder = "age"
-        tf.keyboardType = .namePhonePad
+        tf.keyboardType = .numberPad
         tf.returnKeyType = .next
         tf.layer.borderColor = UIColor.lightGray.cgColor
         tf.layer.borderWidth = 1
@@ -259,6 +266,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             let key = dict["key"] as! String
             self.id = dict["id"] as! Int
 
+            //
             self.downLoadUserProfile(name: name, age: age, gender: gender, firstHobby: firstHobby, secondHobby: secondHobby,url: imageURL,key:key)
             
         }
@@ -274,7 +282,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     func sortByOptions(gender:String, profile:Profile, age:String, name:String){
         if pickerViewOptionChose == "age - 1...10"{
             
-            sortListByAge(age: age, profile: profile, name: name)
+            sortListByAscendingAge(age: age, profile: profile, name: name)
             return
         }
         
@@ -315,7 +323,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
 
-    func sortListByAge(age:String, profile:Profile, name:String){
+    func sortListByAscendingAge(age:String, profile:Profile, name:String){
         aprofile.append(profile)
       let ageSorted = aprofile.sorted(by: { $0.age < $1.age})
          aprofile = []
@@ -482,7 +490,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     
        // profileTableView.isHidden = false
         
-        if self.userImg == nil{
+        if self.userImg == nil || nameTF.text == nil || ageTF.text == nil || firstHobbyChosen == "Select hobby" || secondHobbyChosen == nil{
             //alert no image added
             AlertHandler.shared.userDataMissingAlert(vc: self)
             clearNameAndAgeTextfield()
@@ -555,7 +563,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         sender.isSelected = true
     }
     //Navigation Button Items
-    func navigationBarItems(){
+    func navigationBarButtonItems(){
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonTapped))
