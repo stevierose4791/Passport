@@ -24,7 +24,6 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     var secondHobbyChosen:String!
     var pickerViewOptionChose:String!
     var id:Int!
-    var uid:String!
     private var dbRef: DatabaseReference!
     static var shared = ProfileController()
     
@@ -161,6 +160,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     var userImgButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "defaultimg"), for: .normal)
+        button.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(userImgButtonTapped), for: .touchUpInside)
         return button
@@ -275,28 +275,28 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     func downLoadUserProfile(name:String,age:String,gender:String,firstHobby:String,secondHobby:String,url:String,key:String){
 
         let pro = Profile(name: name, gender: gender, age: age, id: id, firstHobby: firstHobby, secondHobby: secondHobby, key:key, imageUrl: url)
-        self.sortByOptions(gender: gender, profile: pro,age:age, name: name)
+        self.sortByOptions(gender: gender, profile: pro)
     }
     
 
-    func sortByOptions(gender:String, profile:Profile, age:String, name:String){
+    func sortByOptions(gender:String, profile:Profile){
         if pickerViewOptionChose == "age - 1...10"{
             
-            sortListByAscendingAge(age: age, profile: profile, name: name)
+            sortListByAscendingAge(profile: profile)
             return
         }
         
         if pickerViewOptionChose == "age - 10...1"{
-            sortListByDescendingAge(age: age, profile: profile, name: name)
+            sortListByDescendingAge(profile: profile)
             return
         }
         
         if pickerViewOptionChose == "name - a-z"{
-            sortListByAscendingName(age: age, profile: profile, name: name)
+            sortListByAscendingName(profile: profile)
             return
         }
         if pickerViewOptionChose == "name - z-a"{
-            sortListByDescendingName(age: age, profile: profile, name: name)
+            sortListByDescendingName(profile: profile)
             return
         }
         if pickerViewOptionChose == "female only"{
@@ -316,14 +316,14 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                 return
             }
         } else {
-            sortDefaultListByAscendingingID(age: age, profile: profile, name: name)
+            sortDefaultListByAscendingingID(profile: profile)
 
         }
      
         
     }
 
-    func sortListByAscendingAge(age:String, profile:Profile, name:String){
+    func sortListByAscendingAge(profile:Profile){
         aprofile.append(profile)
       let ageSorted = aprofile.sorted(by: { $0.age < $1.age})
          aprofile = []
@@ -351,7 +351,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     }
     
-    func sortListByDescendingAge(age:String, profile:Profile, name:String){
+    func sortListByDescendingAge(profile:Profile){
         //aprofile = []
        
         aprofile.append(profile)
@@ -360,7 +360,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         for uuser in ageSorted{
             
             if uuser.age == profile.age || uuser.id == profile.id{
-                print(uuser.age)
+               
                 let pro = Profile(name: uuser.name, gender: uuser.gender, age: uuser.age, id: uuser.id, firstHobby: uuser.firstHobby, secondHobby: uuser.secondHobby, key:uuser.key, imageUrl: uuser.imageUrl)
                 aprofile.append(pro)
                 
@@ -380,7 +380,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         
     }
-    func sortListByAscendingName(age:String, profile:Profile, name:String){
+    func sortListByAscendingName(profile:Profile){
  
         aprofile.append(profile)
         let ageSorted = aprofile.sorted(by: { $0.name < $1.name})
@@ -388,7 +388,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         for uuser in ageSorted{
            
             if uuser.name == profile.name || uuser.id == profile.id{
-               uuser.name.capitalized
+               
                 let pro = Profile(name: uuser.name, gender: uuser.gender, age: uuser.age, id: uuser.id, firstHobby: uuser.firstHobby, secondHobby: uuser.secondHobby, key:uuser.key, imageUrl: uuser.imageUrl)
                 aprofile.append(pro)
                 
@@ -408,7 +408,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    func sortListByDescendingName(age:String, profile:Profile, name:String){
+    func sortListByDescendingName(profile:Profile){
  
         aprofile.append(profile)
         let ageSorted = aprofile.sorted(by: { $0.name > $1.name})
@@ -437,7 +437,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    func sortDefaultListByAscendingingID(age:String, profile:Profile, name:String){
+    func sortDefaultListByAscendingingID( profile:Profile){
  
         aprofile.append(profile)
         let ageSorted = aprofile.sorted(by: { $0.id < $1.id})

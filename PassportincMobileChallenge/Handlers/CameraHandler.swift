@@ -16,7 +16,7 @@ class CameraHandler: NSObject{
     func camera() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let myPickerController = UIImagePickerController()
-            myPickerController.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+            myPickerController.delegate = self
             myPickerController.sourceType = .camera
             currentVC.present(myPickerController, animated: true, completion: nil)
             
@@ -26,7 +26,7 @@ class CameraHandler: NSObject{
     func photoLibrary() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let myPickerController = UIImagePickerController()
-            myPickerController.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+            myPickerController.delegate = self
             myPickerController.sourceType = .photoLibrary
             currentVC.present(myPickerController, animated: true, completion: nil)
             
